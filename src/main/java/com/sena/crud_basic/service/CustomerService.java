@@ -1,51 +1,26 @@
 package com.sena.crud_basic.service;
 
+import com.sena.crud_basic.dto.request.CustomerCreateDTO;
+import com.sena.crud_basic.dto.request.CustomerUpdateDTO;
+import com.sena.crud_basic.dto.response.CustomerResponseDTO;
+
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.sena.crud_basic.repository.ICustomerRepository;
-import com.sena.crud_basic.model.customerDTO;
 
-/*
- * Agregamos la anotación bean @Service
- * Para indicar que el archivo es un servicio
+/**
+ * Servicio para la gestión de clientes.
+ * Extiende GenericService y agrega métodos específicos de Customer.
  */
-@Service
-public class CustomerService{
+public interface CustomerService {
 
-    //se realiza la conexión con el repositorio
-    @Autowired
-    private ICustomerRepository ICustomerRepository;
+    // Métodos CRUD básicos
+    List<CustomerResponseDTO> findAll();
+    CustomerResponseDTO findById(Long id);
+    CustomerResponseDTO create(CustomerCreateDTO dto);
+    CustomerResponseDTO update(Long id, CustomerUpdateDTO dto);
+    void delete(Long id);
 
-    /*
-     * crear
-     * eliminar
-     * actualizar
-     * leer lista completa
-     * leer el cliente por id
-     * adicional los requeridos
-     * 
-     */
-
-
-
-
-
-    public List<customerDTO> getAllCustomer(){
-        return ICustomerRepository.findAll();
-    }
-
-    public customerDTO getCustomerById(int id){
-        return ICustomerRepository.findById(id).get();
-    }
-
-    public boolean save(customerDTO customer){
-        /*
-         * if(customer.getId==0)register or create
-         * else update
-         */
-        ICustomerRepository.save(customer);
-        return true;
-    }
-    
+    // Métodos específicos de Customer
+    CustomerResponseDTO findByEmail(String email);
+    boolean existsByEmail(String email);
+    List<CustomerResponseDTO> filterByName(String name);
 }

@@ -1,23 +1,28 @@
 package com.sena.crud_basic.model;
 
-import java.sql.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
-@Entity(name = "brands")
-public class BrandsDTO {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_brand")
-    private int id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "brands")
+public class Brand extends BaseEntity {
+  
     @Column(name="name",nullable = false,length = 100)
     private String name;
-
+    
     @Column(name="description",nullable = true,length = 500)
     private String description;
 
@@ -28,12 +33,8 @@ public class BrandsDTO {
     private String websiteUrl;
 
     @Column(name="is_active",nullable = false  )
-    private boolean isActive;
+    private Boolean active;
 
-    @Column(name="created_at",nullable = false,length = 50)
-    private Date createdAt;
-
-    @Column(name="updated_at",nullable = true,length = 50)
-    private Date updatedAt;
+  
 
 }

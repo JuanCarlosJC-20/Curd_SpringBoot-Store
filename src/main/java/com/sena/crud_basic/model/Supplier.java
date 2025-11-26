@@ -1,21 +1,27 @@
 package com.sena.crud_basic.model;
 
-import java.sql.Date;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
-@Entity(name = "suppliers")
-public class SuppliersDTO {
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_supplier")
-    private int id;
+
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "suppliers")
+public class Supplier extends BaseEntity {
+
+  
 
     @Column(name="name",nullable = false,length = 100)
     private String name;
@@ -38,8 +44,5 @@ public class SuppliersDTO {
     @Column(name="country",nullable = true,length = 50)
     private String country;
 
-    @Column(name="created_at",nullable = false,length = 50)
-    private Date createdAt;
-    @Column(name="updated_at",nullable = true,length = 50)
-    private Date updatedAt;
+    
 }
