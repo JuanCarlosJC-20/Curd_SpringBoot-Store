@@ -1,25 +1,29 @@
-name: Build Spring Boot
+name: Build Spring Boot # Nombre del workflow 
 
 on:
+   # Se ejecuta automáticamente cuando haces 'push' en estas ramas
+  
   push:
     branches: ["dev", "main"]
+
+    # Se ejecuta cuando creas un Pull Request hacia main
   pull_request:
     branches: ["main"]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Sistema operativo donde se ejecutará
 
     steps:
-      - name: Clonar repo
+      - name: Clonar repo  # PASO 1: Descargar el código del repositorio
         uses: actions/checkout@v4
 
-      - name: Configurar Java
+      - name: Configurar Java # PASO 2: Instalar Java en el entorno
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
 
-      - name: Compilar proyecto
+      - name: Compilar proyecto # PASO 3: Compilar el proyecto usando Maven
         run: mvn clean install -DskipTests
