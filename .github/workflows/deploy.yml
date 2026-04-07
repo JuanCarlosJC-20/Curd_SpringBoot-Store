@@ -1,0 +1,35 @@
+name: Build Spring Boot
+
+on:
+  push:
+    branches: ["dev", "main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repo
+        uses: actions/checkout@v4
+
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Mensaje inicio
+        run: echo "Iniciando validación del proyecto..."
+
+      - name: Compilar proyecto
+        run: mvn clean install -DskipTests
+
+      - name: Mensaje éxito
+        if: success()
+        run: echo "Build exitoso ✅"
+
+      - name: Mensaje error
+        if: failure()
+        run: echo "Error ❌"
