@@ -70,7 +70,7 @@ public class ProductController {
     @GetMapping("/search")
     @JsonView(JsonViews.Resumen.class)
     public ResponseEntity<List<ProductResponseDTO>> searchByName(@RequestParam String name) {
-        return ResponseEntity.ok(productService.filterByName(name))
+        return ResponseEntity.ok(productService.filterByName(name));
     }
     
 }
