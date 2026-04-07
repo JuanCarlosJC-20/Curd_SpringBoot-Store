@@ -20,16 +20,6 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Mensaje inicio
-        run: echo "Iniciando validación del proyecto..."
 
       - name: Compilar proyecto
         run: mvn clean install -DskipTests
-
-      - name: Mensaje éxito
-        if: success()
-        run: echo "Build exitoso ✅"
-
-      - name: Mensaje error
-        if: failure()
-        run: echo "Error ❌"
