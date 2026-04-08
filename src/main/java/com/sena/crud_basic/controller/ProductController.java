@@ -46,7 +46,7 @@ public class ProductController {
     public ResponseEntity<ProductResponseDTO> updateProduct(
             @PathVariable Long id,
             @Valid @RequestBody ProductUpdateDTO dto) {
-        return ResponseEntity.ok(productService.update(id, dto))
+        return ResponseEntity.ok(productService.update(id, dto));
     }
 
     @DeleteMapping("/{id}")
